@@ -34,7 +34,7 @@ app.use("/api/cart", cartRoutes_1.cartRouter);
 app.use("*", (req, res) => {
     res.json("could not find the specified url");
 });
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     // log.info(`Server listening at http://${host}:${port}`);
     (0, connect_1.default)();
     // userRouter(app);

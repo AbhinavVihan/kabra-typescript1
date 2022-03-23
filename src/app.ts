@@ -37,7 +37,7 @@ app.use("*", (req, res) => {
   res.json("could not find the specified url");
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   // log.info(`Server listening at http://${host}:${port}`);
   connect();
   // userRouter(app);
