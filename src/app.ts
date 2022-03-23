@@ -1,7 +1,6 @@
 import express from "express";
 import { userRouter } from "./Routes/userRoutes";
 import { productRouter } from "./Routes/productRoutes";
-import multer from "multer";
 import fileupload from "express-fileupload";
 import { cartRouter } from "./Routes/cartRoutes";
 import cors from "cors";
@@ -15,11 +14,13 @@ app.use(fileupload());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["*"];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };
+
+app.use(cors(options));
 
 // development logging
 if (process.env.NODE_ENV === "development") {

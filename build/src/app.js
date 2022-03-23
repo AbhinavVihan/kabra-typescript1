@@ -18,10 +18,11 @@ app.use(express_1.default.json());
 app.use((0, express_fileupload_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["*"];
 const options = {
     origin: allowedOrigins,
 };
+app.use((0, cors_1.default)(options));
 // development logging
 if (process.env.NODE_ENV === "development") {
     console.log("development");
