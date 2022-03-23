@@ -38,6 +38,10 @@ app.use("/api/users", userRouter);
 app.use("/api/product", productRouter);
 app.use("/api/cart", cartRouter);
 
+app.use("*", (req, res) => {
+  res.json("could not find the specified url");
+});
+
 app.listen(port, host, () => {
   log.info(`Server listening at http://${host}:${port}`);
   connect();
