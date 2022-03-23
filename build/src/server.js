@@ -12,13 +12,10 @@ process.on("uncaughtException", (err) => {
 });
 dotenv_1.default.config({ path: "../config.env" });
 const app_1 = __importDefault(require("./app"));
-// const DB = process.env.DATABASE!.replace(
-//   "<PASSWORD>",
-//   process.env.DATABASE_PASSWORD!
-// );
+const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
 console.log(process.env.DATABASE);
 mongoose_1.default
-    .connect("mongodb+srv://Abhik0:nBCaCav2Jv86SVs2@cluster0.iiq9t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    .connect(DB)
     .then(() => {
     console.log("database connection successfull");
 })

@@ -10,7 +10,6 @@ const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const cartRoutes_1 = require("./Routes/cartRoutes");
 const cors_1 = __importDefault(require("cors"));
 const defaults_1 = __importDefault(require("../config/defaults"));
-const logger_1 = __importDefault(require("./logger"));
 const connect_1 = __importDefault(require("./db/connect"));
 const app = (0, express_1.default)();
 // const app = express()
@@ -18,11 +17,7 @@ app.use(express_1.default.json());
 app.use((0, express_fileupload_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
-const allowedOrigins = ["*"];
-const options = {
-    origin: allowedOrigins,
-};
-app.use((0, cors_1.default)(options));
+app.use((0, cors_1.default)());
 // development logging
 if (process.env.NODE_ENV === "development") {
     console.log("development");
@@ -39,8 +34,8 @@ app.use("/api/cart", cartRoutes_1.cartRouter);
 app.use("*", (req, res) => {
     res.json("could not find the specified url");
 });
-app.listen(port, host, () => {
-    logger_1.default.info(`Server listening at http://${host}:${port}`);
+app.listen(port, () => {
+    // log.info(`Server listening at http://${host}:${port}`);
     (0, connect_1.default)();
     // userRouter(app);
 });

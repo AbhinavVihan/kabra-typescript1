@@ -14,13 +14,7 @@ app.use(fileupload());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-const allowedOrigins = ["*"];
-
-const options: cors.CorsOptions = {
-  origin: allowedOrigins,
-};
-
-app.use(cors(options));
+app.use(cors());
 
 // development logging
 if (process.env.NODE_ENV === "development") {
@@ -43,8 +37,8 @@ app.use("*", (req, res) => {
   res.json("could not find the specified url");
 });
 
-app.listen(port, host, () => {
-  log.info(`Server listening at http://${host}:${port}`);
+app.listen(port, () => {
+  // log.info(`Server listening at http://${host}:${port}`);
   connect();
   // userRouter(app);
 });
