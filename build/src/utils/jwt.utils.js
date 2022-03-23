@@ -14,9 +14,13 @@ exports.sign = sign;
 const signToken = (id) => jsonwebtoken_1.default.sign({ id }, defaults_1.default.privateKey, {
     expiresIn: defaults_1.default.accessTTokenTtl,
 });
-const createSendToken = (doc) => {
+const createSendToken = (doc, statusCode, req, res) => {
     const token = signToken(doc._id);
     doc.password = undefined;
-    return token;
+    res.status(statusCode).json({
+        status: "success",
+        token,
+        doc,
+    });
 };
 exports.createSendToken = createSendToken;

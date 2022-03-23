@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.User = exports.comparePassword = void 0;
 const mongoose_1 = require("mongoose");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const defaults_1 = __importDefault(require("../../config/defaults"));
@@ -37,13 +37,11 @@ UserSchema.pre("save", function (next) {
         return next();
     });
 });
-UserSchema.methods.comparePassword = function (candidatePassword) {
+const comparePassword = function (candidatePassword, password) {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = this;
-        return yield bcryptjs_1.default
-            .compare(candidatePassword, user.password)
-            .catch((e) => false);
+        return yield bcryptjs_1.default.compare(candidatePassword, password).catch((e) => false);
     });
 };
+exports.comparePassword = comparePassword;
 const User = (0, mongoose_1.model)("User", UserSchema);
 exports.User = User;

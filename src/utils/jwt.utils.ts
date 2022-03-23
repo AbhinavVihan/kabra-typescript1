@@ -1,4 +1,4 @@
-import { Request } from "express";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import config from "../../config/defaults";
 const privateKey = config.privateKey as string;
@@ -12,9 +12,18 @@ const signToken = (id: string) =>
     expiresIn: config.accessTTokenTtl,
   });
 
-export const createSendToken = (doc: any) => {
+export const createSendToken = (
+  doc: any,
+  statusCode: number,
+  req: Request,
+  res: Response
+) => {
   const token = signToken(doc._id);
   doc.password = undefined;
 
-  return token;
+  res.status(statusCode).json({
+    status: "success",
+    token,
+    doc,
+  });
 };

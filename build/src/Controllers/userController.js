@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = exports.getMeHandler = exports.loginUserHandler = exports.signupUserHandler = void 0;
 const userModel_1 = require("../Models/userModel");
 const user_service_1 = require("../service/user.service");
-const lodash_1 = require("lodash");
 const logger_1 = __importDefault(require("../logger"));
 const signupUserHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield (0, user_service_1.createUser)(req.body);
-        return res.send((0, lodash_1.omit)(user.toJSON(), "password"));
+        const user = yield userModel_1.User.findOne({ userName: req.body.userName });
+        if (user) {
+            return res.status(400).json({ message: "username already exists" });
+        }
+        (0, user_service_1.createUser)(req.body, req, res);
     }
     catch (e) {
         logger_1.default.error(e);

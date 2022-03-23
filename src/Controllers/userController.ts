@@ -6,8 +6,11 @@ import log from "../logger";
 
 export const signupUserHandler = async (req: Request, res: Response) => {
   try {
-    const user = await createUser(req.body);
-    return res.send(omit(user.toJSON(), "password"));
+    const user = await User.findOne({ userName: req.body.userName });
+    if (user) {
+      return res.status(400).json({ message: "username already exists" });
+    }
+    createUser(req.body, req, res);
   } catch (e: any) {
     log.error(e);
     return res.status(409).send(e.message);

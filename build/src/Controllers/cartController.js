@@ -24,10 +24,10 @@ const createCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createCart = createCart;
 const addToCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const cart = (0, cart_service_1.addToCart)(req, res);
+        const doc = yield (0, cart_service_1.addToCart)(req, res);
         res.status(200).json({
             status: "success",
-            cart,
+            doc,
         });
     }
     catch (e) {
@@ -62,8 +62,7 @@ const getCart = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getCart = getCart;
 const updateQuantity = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const cart = (0, cart_service_1.updateQuantity)(req, res).then((r) => { });
-        res.status(200).json(cart);
+        const cart = yield (0, cart_service_1.updateQuantity)(req, res).then((r) => { });
     }
     catch (e) {
         res.send(e);

@@ -4,7 +4,7 @@ export interface IUser extends mongoose.Document {
     password: string;
     createdAt: Date;
     updatedAt: Date;
-    comparePassword(candidatePassword: string): Promise<boolean>;
 }
+export declare const comparePassword: (candidatePassword: string, password: string | undefined) => Promise<boolean>;
 declare const User: mongoose.Model<IUser, {}, {}, {}>;
 export { User };

@@ -18,10 +18,10 @@ export const createCart = async (req: Request, res: Response) => {
 
 export const addToCart = async (req: Request, res: Response) => {
   try {
-    const cart = AddToCart(req, res);
+    const doc = await AddToCart(req, res);
     res.status(200).json({
       status: "success",
-      cart,
+      doc,
     });
   } catch (e) {
     res.send(e);
@@ -58,8 +58,7 @@ export const getCart = async (req: any, res: Response) => {
 
 export const updateQuantity = async (req: Request, res: Response) => {
   try {
-    const cart = UpdateQuantity(req, res).then((r) => {});
-    res.status(200).json(cart);
+    const cart = await UpdateQuantity(req, res).then((r) => {});
   } catch (e) {
     res.send(e);
   }

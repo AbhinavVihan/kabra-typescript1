@@ -57,7 +57,8 @@ const updateQuantity = (req, res) => __awaiter(void 0, void 0, void 0, function*
         $set: {
             "product.$.quantity": req.body.quantity,
         },
+    }).then((r) => {
+        return res.status(200).json(r);
     });
-    return cart;
 });
 exports.updateQuantity = updateQuantity;

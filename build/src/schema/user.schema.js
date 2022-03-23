@@ -5,10 +5,7 @@ const yup_1 = require("yup");
 exports.createUserSchemaValidation = (0, yup_1.object)({
     body: (0, yup_1.object)({
         userName: (0, yup_1.string)().required("userName is required"),
-        password: (0, yup_1.string)()
-            .required("password is required")
-            .min(6, "Password is too short - should be 6 chars minimum")
-            .matches(/^[a-zA-Z0-9_.-]*$/, "Password can only contain letters"),
+        password: (0, yup_1.string)().required("password is required"),
     }),
 });
 exports.loginValidation = (0, yup_1.object)({

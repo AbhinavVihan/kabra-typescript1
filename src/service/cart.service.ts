@@ -58,6 +58,7 @@ export const updateQuantity = async (req: any, res: Response) => {
         "product.$.quantity": req.body.quantity,
       },
     }
-  );
-  return cart;
+  ).then((r) => {
+    return res.status(200).json(r);
+  });
 };
