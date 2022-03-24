@@ -11,7 +11,7 @@ export const createUser = async (
   res: Response
 ) => {
   const newUser = await User.create(input);
-  createSendToken(newUser, 200, req, res);
+  createSendToken(newUser, 201, req, res);
 };
 
 export const loginUser = async (req: Request, res: Response) => {

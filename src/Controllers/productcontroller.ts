@@ -35,7 +35,7 @@ export const addProduct = async (req: any, res: Response) => {
           quantity,
           image: `https://res.cloudinary.com/dzrmunwn7/image/upload/v${r.version}/${r.public_id}.jpg`,
         });
-        res.status(200).json(doc);
+        res.status(201).json(doc);
       });
   } catch (e) {
     res.json(e);
