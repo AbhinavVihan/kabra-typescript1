@@ -14,7 +14,7 @@ const userModel_1 = require("../Models/userModel");
 const jwt_utils_1 = require("../utils/jwt.utils");
 const createUser = (input, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield userModel_1.User.create(input);
-    (0, jwt_utils_1.createSendToken)(newUser, 200, req, res);
+    (0, jwt_utils_1.createSendToken)(newUser, 201, req, res);
 });
 exports.createUser = createUser;
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

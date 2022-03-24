@@ -44,7 +44,7 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 quantity,
                 image: `https://res.cloudinary.com/dzrmunwn7/image/upload/v${r.version}/${r.public_id}.jpg`,
             });
-            res.status(200).json(doc);
+            res.status(201).json(doc);
         }));
     }
     catch (e) {
